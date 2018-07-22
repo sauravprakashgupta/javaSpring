@@ -1,0 +1,51 @@
+Event Handling
+
+In previous example we saw messaging and Internationalisation as the first advantage of ApplicationContext over BeanFactory. Event Handling is another such advantage.
+
+Any Event Handling (no matter Spring or any other) has 3 core components
+a. Event publisher
+b. Event listener
+c. Event itself
+
+Creating Your Listener Class
+Steps:
+1. Let us start by creating a class that listens to all the event published by spring.
+a. ->New->Class->Name:MyEventListener->implement ApplicationListener
+b. implement the unimplemented method
+This method gets executed each time an event is executed. It takes an ApplicationEvent object as input.
+
+2. You have to register this MyEventListener as our valid bean by declaring it in beans.xml or using @Component annotation.
+(as we have used <context:component-scan base-package="com.sauravcodeblog" /> so we can use @Component easily)
+
+What this will do is to capture all framework related event, we have not defined any event of our own. So far, if we execute this will executed both at init and destroy points
+
+Creating Your Publisher Class
+Steps:
+1. We need to have an event Class(create or use existing one)
+2. You need to have that event published in another bean
+----
+a. Create a class DrawEvent.java and extend ApplicationEvent
+b. define the super class constructor
+c. create a toString() method.
+
+Now we want to publish this event in draw method of our Circle class. In order to publish an event we need to have a EventPublisher. So we will create an ApplicationEventPublisher instance variable.
+
+In Circle Class
+private ApplicationEventPublisher publisher;
+
+In our draw() method of Circle
+DrawEvent drawEvent = new DrawEvent(this);
+publisher.publishEvent(drawEvent);
+
+Now if you see super class constructor of ApplicationEvent.
+it takes an parameter input as Object Source. So we will pass the current instance 'this' as an input.
+
+As we have used an instance variable ApplicationEventPublisher publisher. But we have not initalized it. This is done by implememting an interface ApplicationEventPublisherAware. This will ask you to impoplent a method() setApplicationEventPublisher()
+
+public void setApplicationEventPublisher(ApplicationEventPublisher punblisher){
+this.publisher = publisher;
+}
+
+
+
+Basically the concept is simple, when we have a bean that implement the ApplicationEventPublisherAware interface it can be guaranteed that spring is gonna call setApplicationEventPublisher() and it gonna provide a ApplicationEventPublisher handler which can be set to initalize our instance variable ApplicationEventPublisher publisher. Actually what is happening is the publisher which spring is gonna give us is actually an ApplicationContext object
