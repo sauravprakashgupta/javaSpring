@@ -1,0 +1,52 @@
+Messaging and Internationalization
+
+Out of some the feature provider by ApplicationContext over BeanFactory 'Messaging and Internationalization' is one of the important one. So if you want different messages to be a part of your appliaction, instead os including it in code body we can use it in a common properties files. We use key-value pair to refer to these messages.
+
+Steps
+1. Lets create a new File named myMessages.properties with the following content:
+greeting=Hello	(Note: no double/single quotes)
+
+So the first thing we need to do to enable this messaging, we have to messageSourceBean defined in the beans.xml
+
+<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+<property name="basenames">
+//List of all properties file names
+<list>
+	<value>myMessages</value>		//Note: we dont have to include extension properties, as it it uses default extension of properties.
+</list>
+</property>
+</bean>
+This actually help us to pick messages from properties files.
+
+2. Now we have to refer this in our POJO.
+mesg = ApplicationContextObject.getMessage("propertyName",ListOfArgumentArrays,"DefaultMessage",Locale)
+(Locale : this can be treated as a local file which can be used to read, Like Hindi version, English version, French version of the same file.)
+System.out.println(mesg)
+
+So we can very well use the above 2 points to receive message from properties file.
+
+
+Alternate Method
+1. repeat step one above
+2. By using ResourceBundleMessageSource in beans.xml we have acually implemented an interface which allows us to use getMessage feature.
+
+Suppose we want it in Class Circle, So in class Circle we wil do the following,
+import messageSource
+
+@AutoWired
+private MessageSource messageSource;
+
+//Make Setters for this
+As we have only one MessageSource variable for the beans hence we can easily autowire byType.
+
+
+
+How To use Parameters in messaging
+1. in myMessages.properties include a 
+drawing.point=Circle : Point is ({0},{1})
+
+2. In your POJO where you want the message to be used
+System.out.println(this.messageSource.getMessage('drawing.point', new Object[]{center.getX(), center.getY()}, "myDefault Points", Locale))
+
+Here we have used center.getX and center.getY() as 2 points which will be passed as parameters in drawing.point=Circle : Point is ({0},{1}).
+
