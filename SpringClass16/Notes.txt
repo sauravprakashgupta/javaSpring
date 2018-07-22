@@ -1,0 +1,45 @@
+Autowired Annotation
+
+We use autowire to connect the dependency from class object to beans automatically.
+The order of of autowire for @Autowire annotation check is
+Type Annotation > Name Annotation > Qualifiers
+
+So if we have only one bean of the 'type' required, then the bean can be easily wired. But suppose we have multiple bean of same type, then the bean can be wired based on 'id' of the bean. if We more than one object is dependent on the bean and we can not follow the Autowire byName. Then we can use the property called <qualifier> to tag the bean and use @Qualifier annotation in the object method
+
+
+
+Steps to include @Autowire annotation
+1. As we want to autowire the center propert of class Circle, we have to annotate @Autowire to its setter class as follows--
+import org.springframework.beans.factory.annotation.Autowired;
+@Autowired
+public void setCenter(Point center) {
+	this.center = center;
+}
+
+2. register the AutowiredAnnotationBeanPostProcessor in your beans.xml file
+<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+3. Remember that order of autowire annotation is as follow
+Type > Name > Qualifiers.
+So if we have only one point say pointA then the above 2 steps enough to autowire the point center of Circle object. because this will follow byType annotation
+
+4. But if we have more than one Point class objects say pointA,pointB,pointC then we can certainly not follow the byType annotation and hence we require byName annotation. Hence any of the bean id must be same named same as Circle instance memeber variable(center in our class)
+
+A. 
+import org.springframework.beans.factory.annotation.Autowired;
+@Autowired
+public void setCenter(Point center) {
+	this.center = center;
+}
+
+B.
+<bean id = "circle" class = "com.sauravcodeblog.Circle">
+<!-- <property name="center" ref="pointA"/> -->
+</bean>
+  
+<bean id="center" class="com.sauravcodeblog.Point">
+<property name="x" value="0"/>
+<property name="y" value="0"/>
+</bean>
+
+<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />

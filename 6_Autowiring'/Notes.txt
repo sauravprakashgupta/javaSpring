@@ -1,0 +1,11 @@
+AutoWiring
+Autowiring is the feature provided by the Spring framework. It helps us to skip some of the configurations steps that we have to do. We have seen that every member variable in our bean has to be configured, and if it is a refernce to a bean you have to mention the refernce explicitly. It intelligently guessing what the refernce is.
+
+If the class instance variable(member variable) has same name as that of the bean ids. Then we can use 'autowire="byName"' argument in bean to automatically map the instance variable to the bean ids. The default value of autowire(if not defined). is autowire = false/off.
+
+We have 3 different ways to autowire
+autowire="byName" 
+autowire="byType"
+autowire="byConstructor"
+
+NOTE: If you have large number of member variables, its better if you explicit wiring and not choose autowire, as this makes it complicated to trace at the time of error.

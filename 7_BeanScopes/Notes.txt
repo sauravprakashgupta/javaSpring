@@ -1,0 +1,27 @@
+Bean Scope
+We have some objects which are managed by spring container and we have come objects which are not managed by the spring container.
+see screenshot.
+When we say, managed by the Spring container, what it mean is any object can reference any object from the spring container by providing their 'ID' and then spring provides an instance of that object that we request. This all happens based on the Factory pattern(Application Context or Bean Factory).
+So when an object makes a request in Bean Factory/ Application context for an instance of the bean, the BF/AC refers to the "beans.xml" files and then it gets the information based on the ID, it creates the blueprint of the bean and then hands it over to the calling object.
+This is how spring can work, but NOTE: that this is not the default way the Spring operates.
+
+The Default way for the Bean to operate is as follows.
+At this step itself:
+ApplicationContext context= new ClassPathXmlApplicationContext("Beans.xml");
+The AC/BF looks at the Beans.xml file, and it creates them by itself. Note that we have yet not called the getBeans() function, but the AC has already created the bean's blueprint for itself. Its just like constructor(as the constructor is called at the time of class instantiation. Similarly the bean blueprint is created at the time of instantiation itself)
+NOTE: This can be configured to get the blueprints only after the getBeans() function call. But the default behaviour is creation of bean's blueprint at the time of instantiation.
+
+Kinds Of Beans:
+1. Singleton : Only once per spring container(similar to singleton pattern in java, but not fully same). In terms of behaviour/functionality It is very similar to static variables in java. The default scope of a bean is singleton.
+
+2. Prototype : New bean is created with every request or reference.
+So it will create a new bean each time we have a getBean() function or a ref call(like pointA(0,0) in our examples can be used as different beans for two different shapes). 
+getBeans() : direct call.
+ref : indirect call.
+
+3. Web-Aware Context Bean Scopes
+	3.a. Request : New bean per servlet request
+	3.b. Session : New Bean per session
+	3.c. Global-Session: New Bean per global HTTP session(portlet context)
+	
+

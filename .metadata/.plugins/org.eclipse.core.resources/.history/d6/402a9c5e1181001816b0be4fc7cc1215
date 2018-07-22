@@ -1,0 +1,21 @@
+package com.sauravcodeblog;
+
+public class Triangle {
+	private String triangleType;
+	
+	public Triangle(String _triangleType) {
+		this.triangleType = _triangleType;
+	}
+		
+	public String getTriangleType() {
+		return triangleType;
+	}
+
+//	public void setTriangleType(String triangleType) {
+//		this.triangleType = triangleType;
+//	}
+
+	public void draw() {
+		System.out.println(getTriangleType() + " Triangle Drawn");
+	}
+}

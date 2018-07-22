@@ -1,0 +1,43 @@
+JSR-250 Annotation
+
+JSR-250 is actaully a standard Java Specification Request that defines all the standard requests that would apply across different technology and different frameworks.
+
+1. @Resource(name="NAME/ID")
+This can do a dependency injection by name . Suppose we want to inject bean with id="pointB" as a depencency to the Point Center for Circle class object. Then we need to pass the name/id of the bean to the @Resource("NAME") annotation.
+
+2. @PostConstruct
+public void initializeCircle() {
+	System.out.println("Circle init function called");
+}
+
+3. @PreDestroy
+public void destroyCircle() {
+	System.out.println("Circle destroy function called");
+}
+
+Note noth initializeCircle() and destroyCircle() are custom java object which gets special feature only due to annotaion.
+
+4. To make @PreDestroy() perform its task we have to let the ApplicationContext being shutdown after completion of main method. For this we have to register a shutdown hook using AbstractApplicationContext
+
+import org.springframework.context.support.AbstractApplicationContext;
+AbstractApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+context.registerShutdownHook();
+
+
+
+
+
+Make sure you have included the following
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+   xmlns:context="http://www.springframework.org/schema/context">
+  
+  //Inside main bean
+ <context:annotation-config />
+ 
+ 

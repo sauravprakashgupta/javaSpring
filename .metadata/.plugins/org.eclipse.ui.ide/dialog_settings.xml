@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="E:\software\javaSpring\14_Annotation__RequiredAnotation"/>
+		<item value="E:\software\javaSpring\11_BeanPostProcessor"/>
+		<item value="E:\software\javaSpring\7_BeanScopes"/>
+		<item value="E:\software\javaSpring\6_Autowiring&apos;"/>
+		<item value="E:\software\javaSpring\3_InjectingObjects"/>
+		<item value="E:\software\javaSpring\SpringClass18"/>
+		<item value="E:\software\javaSpring\SpringClass17"/>
+		<item value="E:\software\javaSpring\SpringClass16"/>
+		<item value="E:\software\javaSpring\SpringClass15"/>
+		<item value="E:\software\javaSpring\SpringClass3"/>
+		<item value="E:\software\javaSpring\SpringClass5"/>
+		<item value="E:\software\javaSpring\SpringClass6"/>
+		<item value="E:\software\javaSpring\SpringClass8"/>
+		<item value="E:\software\javaSpring\SpringClass10"/>
+		<item value="E:\software\javaSpring\SpringClass11"/>
+		<item value="E:\software\javaSpring\SpringClass13"/>
+		<item value="E:\software\javaSpring\SpringClass14"/>
+		<item value="E:\software\javaSpring\SpringClass12"/>
+		<item value="E:\software\javaSpring\SpringClass12\bin"/>
+		<item value="E:\software\javaSpring\SpringClass9"/>
+		<item value="E:\software\javaSpring\SpringClass7"/>
+		<item value="E:\software\javaSpring\SpringClass4"/>
+		<item value="E:\software\javaSpring\SpringClass2"/>
+		<item value="E:\software\javaSpring\SpringDemo1"/>
+	</list>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jdt.ui.java"/>
+		</list>
+	</section>
+</section>

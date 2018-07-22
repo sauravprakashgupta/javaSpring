@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Question.java&apos; to &apos;SIwNonStringMapHavingDependentObject/src/com.sauravcodeblog&apos;&#x0D;&#x0A;- Original project: &apos;SIwNonStringMapHavingDependentObject&apos;&#x0D;&#x0A;- Destination element: &apos;SIwNonStringMapHavingDependentObject/src/com.sauravcodeblog&apos;&#x0D;&#x0A;- Original element: &apos;Question.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.sauravcodeblog" element1="/src&lt;{Question.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1531169161284" units="1" version="1.0"/>
+</session>

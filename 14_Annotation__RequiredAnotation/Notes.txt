@@ -1,0 +1,42 @@
+Annotations- Required Annotations
+
+We have Beans.xml file to define all our dependencies and instantiate new beans by calling getBeans() method. Now we will do the same tasks using annotations. Lets start with one of the easiest name '@Required annotation'
+
+Suppose in my beans.xml file I remove the property- "<property name="center" ref="pointA"/>" from-
+<bean id = "circle" class = "com.sauravcodeblog.Circle" autowire="byName"> 
+   	<property name="center" ref="pointA"/>
+</bean>
+
+then as the property is required for execution flow to complete this will give nullPointerException. 
+But suppose in case of real application, with hundreds of the dependencies and you want to wait for program to crash at runtime, rather you want to trace it at initalization step itself.
+
+For example, In our Circle class it is seen that private point center must be initialized somewhere for the program to work, so it very much required. So let us do a test. 
+we have removed the property tag in circle bean and want to check before it is crashed.
+
+Now if we mark our setCenter() setter method as @Required then our  BeanPostProcessor will validate it. When all the bean processes are instatntiated it checks for the annotations and validate if the marked anotation has proper beans or not.
+Make sure you have included
+<bean class="org.springframework.beans.factory.annotations.RequiredAnnotationBeanPostProcessor" />
+
+This will allow us to show the error at initalization step itself and we dont have to wait for runtime error.
+
+
+
+Steps to understand Required Annotation:
+1. As setter method for center instance variable is required for setting bean with bean property name="center". So we mark this as @Required
+2. Import the import org.springframework.beans.factory.annotation.Required;
+--
+import org.springframework.beans.factory.annotation.Required;
+@Required
+public void setCenter(Point center) {
+	this.center = center;
+}
+
+3. Now go an comment-off the center property of bean with name="center"
+<bean id = "circle" class = "com.sauravcodeblog.Circle">
+<!--    	<property name="center" ref="pointA"/> -->
+</bean>
+
+4.  Now include the bean tag attribute in beans.xml as the following--
+<bean class="org.springframework.beans.factory.annotations.RequiredAnnotationBeanPostProcessor" />
+5. Now execute and see, that the error is thrown by the BeanPostProcessor itself at the time of bean initalization. The error is as follows
+Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanInitializationException: Property 'center' is required for bean 'circle'

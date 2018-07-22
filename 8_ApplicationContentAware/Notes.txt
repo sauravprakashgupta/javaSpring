@@ -1,0 +1,21 @@
+ApplicationContextAware
+(It is basically used to pass container information to the bean)
+
+We have used ApplicationContext only once in our program and by using it we can call getBeans() methods. By doing these two we can initalize all the beans in the bean factory. 
+For example, We have used beans of Triangle and Points class both by simply calling ApplicationContext and getBeans once. As these are linked and hence we do not need to intialize the beans again and again. Spring is intelligent enough to initalize all the related beans(direct and indirect) in one call.
+But suppose we want to use the ApplicationContext object again(as per our program requirement). We can do this simply by using the ApplicationContextAware.
+
+If any class object want to use the ApplicationContext object it first has to implement the ApplicationContextAware interface and define the neccessary methods - setApplicationContext()
+For example, In our case, we want our Triangle class objects and related beans to access the ApplicationContext object and hence we need to implement ApplicationContextAware interface and define setApplicationContext() in it.
+
+So by doing this what Spring does is, when it loads all beans(Singleton or prototype) and sees that its class object implements ApplicationContextAware, it calls the setApplicationContext method. So now what we can do is we can define a ApplicationContext object named context at class level and initalize it in setApplicationContext() method. By doing this we can have ApplicationContext object.
+
+Just like The ApplicationContextAware, there are few other aware interfaces available that gives information about the container to the bean. What we need to do get such information is to implement the appropriate Aware interface and then call the setter method to set the container information to the bean object.
+
+some of the names are-
+ApplicationContextAware
+ApplicationEventPublisherAware
+BeanClassLoaderAware
+BeanNameAware
+
+NOTE: The setter method for all the Aware methods are called before the progrm execution. The setter method is called at the time of bean initalization itself.

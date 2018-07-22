@@ -1,0 +1,8 @@
+Bean Definition inheritence
+
+Say you have a lot of bean definition in your Beans.xml. and you have large set of codes which is common to many beans definitions. Then you can inherit the bean definition from a parent bean. The concept is same as inheritence in OOP.
+
+In case of inheritence of collection objects in Beans.xml. The default behaviour is overriding for same collection property(i,e, the tags of the parent are not included). You can use the merge atribute to inherit the parent atributes in the child bean.
+
+abstract atribute in beans
+If you want you parent bean attribute not to be have a initial value rather just to use it as a template. You can use the abstract keyword to do this.

@@ -1,0 +1,50 @@
+LifeCycle CallBacks
+
+We have seen what are the advantages of spring act as a container for our bean. LifeCycle CallBacks is an another advantage which spring can provde us. You have methods in our beans which is executed just after bean creation and just before bean destruction. We can control all such methods using LifeCycle CallBacks methods to perform initalize or clean up activities.
+
+We have created an ApplicationContext object, but we have not closed it. We do not have to close it in WebApplication or enterprise application(It get automatically closed). But we have to close it in desktop level applications(SE applications). To close it we have to use another class called AbstractApplicationContext, which actualy registers a ShutDownHook for our application and hence when our main method ends the ShutDownHook  is called off and the ApplicationContext object is closed.
+
+AbstractApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+context.registerShutdownHook();
+
+METHOD1		
+Using afterPropertiesSet() and destroy() methods
+To use Post-Initialization and Pre-Destruction methods of a bean class we have to use afterPropertiesSet() and destroy() method. These methods can be called by implementing interfaces -- initializingBean and 
+
+afterPropertiesSet() : This method is called just after bean initializingBean.
+destroy() : This method is called just before bean destruction and can be used for cleanup activities.
+
+
+NOTE: afterPropertiesSet() and destroy() methods are spring level function which is called by implementing interfaces --InitializingBean, DisposableBean.
+But we can also use normal/simple custom java methods(not spring level method) and register them in Beans.xml file to act as an init() and destroy() methods.
+
+
+METHOD2
+using custom defined mrthods and registering it in beans.xml file
+we use an argument in beans.xml file called init-method="myInit"
+
+<bean id ="triangle" class = "com.sauravcodeblog.Triangle" init-method="myInit">
+
+public void myInit() {
+	System.out.println("my custom init method called for triangle");
+}
+public void myDestroy() {
+	System.out.println("my custom destroy method called for triangle");
+}
+
+
+Making init and destroy methods as global
+Now, suppose, if your common practice throughout you application is to use myInit() and myDestroy() as initalize and destroy methods. Then instead of defining it at each bean level(like what we did above for bean with id="triangle"). We can make it global by defining it as an argument in top-most bean. Hence myInit and myDestroy will be looked as default-init-method="myInit" and default-destroy-method="myDestroy" at each bean level. If the relevant class has defined it then it will be used, else if not then it will be ignored.
+For example: suppose you have 10 beans in your application. So our application will look for all 10 bean for myInit and myDestroy methods, and suppose it finds it in 4 beans only, then the rest six bean will not have the myInit and myDestroy, it will be skipped.
+
+Benefit of using at global level: we do not have to define the same code at each bean level in beans.xml.
+
+
+Using Both METHOD1 and METHOD2 above at the sametime
+the order of execution is as follows
+----
+InitializingBean init method called for triangle
+my custom init method called for triangle
+Triangle Drawn with points -(0,0)(-20,0)(20,0) ------ the application work goes here
+DisposableBean destroy method called for triangle
+my custom destroy method called for triangle

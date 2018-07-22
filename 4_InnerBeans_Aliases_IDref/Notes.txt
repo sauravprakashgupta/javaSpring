@@ -1,0 +1,14 @@
+Inner Beans, Aliases and idref
+
+a. Inner beans
+In our previous example, pointA(0,0) is actually can act as a reference point for many other beans, So we can keep it as a seperate bean. Whereas pointB and pointC is actually only related to the triangle, hence we can keep it as inner beans. This does not give any extra functionality, it is used only for code maintainability and ease of understanding.
+
+b. Aliases
+Aliases can be used for referencing instead of id in beans. This does not give any extra functionality. It only helps in giving a simple access names.
+You can also use the name argument in the bean to perform the same. But its always best to referncce via 'id'(it is unique and validator)
+
+c. name
+just like aliases you can also have name propert in the bean definition line. This too gives an identity to the bean.
+
+d. idref
+instead of ref to refernece an argument, we can also use the idref to restrict a bean to access via only the id and not the name or aliases. it also throws an exception if the idref argument does not match any 'id'.

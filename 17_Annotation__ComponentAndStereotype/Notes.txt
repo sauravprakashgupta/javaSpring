@@ -1,0 +1,25 @@
+Component and Stereotype Annotation
+
+So for all the annotation we have have used actually works on the beans defined in the breans.xml file. But now we will learn how we can make use of POJO without the use of xml tags, by only using Annotations
+
+1. @Component (import org.springframework.stereotype.Component): When we define a class with annotation @Component, the class is registered as a bean component. this is equivalent to doing --
+<bean id = "circle" class = "com.sauravcodeblog.Circle"></bean>
+
+Now you can even remove this beans id="circle" from the beans.xml file
+
+
+2. Now if we look at points, The points are defined with 3 different names- pointA, pointB, and pointC. Now if I add an annotation to a class, you can not have different instance of the bean for the same class. So if I go to Point class and annotate it. So whatever the annotion is defined it will lead behaving as the one particular type of bean only. But as we have defined 3 differnet beans. And as they are from the same Point class we can not have 3 different behaviour for the beans.
+So for 3 points either we have to have 3 different points or we have to use the Beans.xml file as we have used in previous examples.
+So this is actually a very big disadvantage of Annotation.
+
+3. Now as we are using @Component annotation which actually shifts the beans definition into a POJO. We have to register this in the Beans.xml file using tags and arguments. so that the beans.xml file understands this.
+<context:component-scan base-package="com.sauravcodeblog"/>
+By doing this we are actually telling the beans.xml file where it have to search for components.
+
+4. So spring will search the <context:component-scan base-package="com.sauravcodeblog"/> and any class with @Component annotation is created a bean with same name but with first letter in small case. So bean of class Circle will be bean with id="cirle".
+
+
+5. Just like @Component, we also have other Annotation tags which we can use at class level to give the class a bean definition and alot functionality to it. These are
+@Controller
+@Repository
+@Service

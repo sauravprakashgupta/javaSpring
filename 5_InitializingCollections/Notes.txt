@@ -1,0 +1,10 @@
+Initializing Collections
+Till now we have seen individual values for premitives(int) and for objects(java.lang.String)
+There are 3 core interfaces that java supports(List, Set, and Map). All the three are supported by Spring using corresponding tags(list tag, set tag and map tag). Here we will quickly go through list tag.
+
+For the sake of simplicity, let us get back to SpringClass4 codes.
+And here, let us change 3 different points as the list of point containing 3 points.
+NOTE: in list tags, the type conversion happen by itself,
+in class : private List<Point> points
+in XML : <ref bean="point2"/>
+here based on Point type, in class, the xml file point2 is made of type Point.

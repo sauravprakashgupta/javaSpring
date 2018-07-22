@@ -1,0 +1,38 @@
+BeanFactoryPostProcessor
+
+We have seen BeanPostProcessor in last example and saw how it is the extension point for the Spring and how we can configure spring framework for our specific need. BeanFactoryPostProcessor is another extension point. It is a feature provided by spring. If you want to execute code where the beanFactory itself being intialized then you can use BeanFactoryPostProcessor.
+
+What Spring does is, it calls the method - postProcessBeanFactory of class MyBeanFactoryPostProcessor at the time of bean initalization.
+NOTE: When Spring initalizes the bean factory, the first thing it does it initalizes all the singleton beans. So what happens here is BeanFactoryPostProcessor is called and then the bean factory is initalized.
+
+Steps to include BeanFactoryPostProcessor
+1. Create a class(say - MyBeanFactoryPostProcessor) which implements the interface BeanFactoryPostProcessor.
+2. define the interface method postProcessBeanFactory()
+3. register the class which implemented BeanFactoryPostProcessor in your beans.xml as follows
+<bean class = "com.sauravcodeblog.MyBeanFactoryPostProcessor" />
+
+
+
+One feature of BeanFactoryPostProcessor which comes out of the box is called property place holder configurer. What it helps us do is, if you wanna have a place holder for your bean conguration.
+a. Let us create a property file - 'pointsconfig.properties' which will keep values of all the properties and can be accessed if required. basically it does externalizes the values to an external file.
+	
+
+Steps to include data data from properties files
+1. include a bean tag in Beans.xml to include the funtionality
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<propert name="locations" value="pointsconfig.properties" >
+</bean>
+
+2. create a file-- pointsconfig.properties(you can have anyName.anyExtension)
+
+3. include the values in pointsconfig.properties files, for example :
+pointA.pointX=0
+pointA.pointY=0
+pointB.pointY=20
+
+4. use placeholder to include these values in your beans as follows.
+<bean id="pointA" class="com.sauravcodeblog.Point">
+	<property name="x" value="${pointA.pointX}"/>
+	<property name="y" value="${pointA.pointY}"/>
+</bean>
+

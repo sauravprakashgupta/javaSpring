@@ -1,0 +1,25 @@
+BeanPostProcessors
+
+BeanPostProcessors are classes that tells spring that there is some processing that spring need to do after initializing each and every bean. A couple of important points are 
+
+a. A single method executed each time for each bean initialization. No matter how many and how many types of beans exists in Beans.xml file
+
+b. BeanPostProcessors is a seperate class, it catters to initialization of beans. and methods this class does all our task.
+
+c. In our previous example we saw init and destroy methods which act as a constructor and destructors for overall beans.xml file. But in case if you want inital methods specifically for before and after bean creation with id="triangle" we can have it. if we want it for id="pointA", we can have it, and so on for each bean. So BeanPostProcessors can be treated a way to execute a method that need to be run across all these different beans before and after its completion.
+
+Lets make our own BeanPostProcessors.
+1. create a class-DisplayNameBeanPostProcessors and implement BeanPostProcessors interface and define required methods
+--postProcessAfterInitialization() : Called After initialization
+--postProcessBeforeInitialization() : Called Before initialization
+
+a. Note both the methods have return type as object. So spring expect that you return the same object back(no matter what operations you perform on to it).
+We passed in bean as an argument and returning the bean. But you can return another object, it is permitted.
+
+NOTE: you can have any number of such classes we are keeping it simple and having only one. But the basic remains the same.
+We do not have destruction code here
+
+2. Next, just having a class with BeanPostProcessors implemented is not enough. You have to register it in the beans.xml file.
+Note we dont have to give any id or ref to this bean as it is not dependent on any other bean. We just include it in the beans.xml file only to register it. and once register spring knows, when to call it.
+
+NOTE: we can have any number of such classes which implements BeanPostProcessors and can act the same way. you may even implemet the orderedInterface and thus define the order in which the spring will execute.

@@ -1,0 +1,63 @@
+We are going to use Constructor injection in this example
+
+1. We can have multiple constructor as well. But note that we have to be very careful while overriding constructors and beans' constructor args
+
+A. Suppose we have only one constructor for class Triangle, with 2 instance variables.
+	public Triangle(String _triangleType, int _height) {
+		this.triangleType = _triangleType;
+		this.height = _height;
+	}
+	We have to pass pass 2 argument values for the constructor
+	<bean id = "triangle" class = "com.sauravcodeblog.Triangle">
+   	<constructor-arg value="Equilateral"/>
+   	<constructor-arg value="20"/>
+   </bean>
+   
+   Note that both values are in " " , even 20. Spring is intelligent enough to understand and treat it as an int(if you skip "" for 20, ou will get errors.)
+   So by following the order of beans and constructor arguments are accepted as.
+   _triangleType="Equilateral"
+   _height="20".
+   
+   So if we reverse the order of constructor arguments or values in Beans.xml. The argument values will become.
+   _triangleType="20"
+   _height="Equilateral".
+   Though this is not correct, but spring will take this as correct input. 
+   
+   So a better way to do this is by using 'type'(discuss in example B) or by using index value in Beans.xml's constructor-args
+   <constructor-arg index="0" value="Equilateral"/>
+   <constructor-arg index="1" value="20"/>
+   
+   So now the order is as per the constructor's order.
+
+
+B. Suppose We have 3 constructor
+
+	1. 
+	public Triangle(String _triangleType) {
+		this.triangleType = _triangleType;
+	}
+	
+	public Triangle(int _height) {
+		this.height = _height;
+	}
+	
+	public Triangle(String _triangleType, int _height) {
+		this.triangleType = _triangleType;
+		this.height = _height;
+	}
+	
+   Now in Beans.xml, If we define a constructor-arg with only one value, it will call the first one with only one constructor - 
+   public Triangle(String _triangleType) in this case. 
+   But Suppose we want to use public Triangle(int _height) constructor.
+   The easiest way to do this is by using type=int in the constructor, example - <constructor-arg type="int" value="20"/>. This Beans.xml can be read as use the contrustor with only one value of type int and pass 20 as the value to it.
+   
+   2.
+   Suppose we want to use the constructor with only one argument of type string. You can use the following in the Beans.xml constructor argument
+   <constructor-arg type="java.lang.String" value="Equilateral"/>
+   
+   3. Suppose we want to use the constructor with 2 or more constructor and the order of argument passed is also important
+   <constructor-arg type="java.lang.String" index="0" value="Equilateral"/>
+   <constructor-arg index="1" type="int" value="20"/>
+   
+   this will ensure both order and type
+   
