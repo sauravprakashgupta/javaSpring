@@ -1,0 +1,25 @@
+Event handling in the ApplicationContext is provided through the ApplicationEvent class and ApplicationListener interface. Hence, if a bean implements the ApplicationListener, then every time an ApplicationEvent gets published to the ApplicationContext, that bean is notified.
+
+Steps
+1. Create the ApplicationContext object as either of the following way
+a.	ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+b.	AbstractApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+
+2. Define a class(named : MyEventHandler) which implements ApplicationListener<ContextXXXXXXEvent> , the possible values for ContextXXXXXXEvent are
+a. ContextRefreshedEvent
+b. ContextStartedEvent
+c. ContextStoppedEvent
+d. ContextClosedEvent
+e. RequestHandledEvent
+
+3. implement the unimplemented method - onApplicationEvent as follows
+public void onApplicationEvent(ContextXXXXXXEvent event){} 
+The possible values for ContextXXXXXXEvent is same as point 2.
+
+4. in your Beans.xml file, define the bean with
+
+<bean id = "myEventHandler" class = "com.sauravcodeblog.CStartEventHandler"/> 
+i.e, <bean id = "className" class = "packageName.ClassName"/> 
+NOTE :  the bean id is same as class name, the only differce is we have to write it's first letter in small, and spring automatically identifies it.
+
+5. You can create some other class as well, As I have created HelloWorld/Circle in this case, and then call these event handling from there as well
