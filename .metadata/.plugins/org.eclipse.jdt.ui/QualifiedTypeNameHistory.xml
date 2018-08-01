@@ -29,4 +29,5 @@
 <fullyQualifiedTypeName name="com.sauravcodeblog.ShapeService.ShapeService"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Aspect"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.Pointcut"/>
 </qualifiedTypeNameHistroy>
