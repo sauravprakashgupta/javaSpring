@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="E:\software\javaSpring\AOP_Demo"/>
 		<item value="D:\Downloads\Softwares\spring_library\AspectJ\aspectjrt-1.6.9"/>
 		<item value="E:\software\javaSpring\14_Annotation__RequiredAnotation"/>
 		<item value="E:\software\javaSpring\11_BeanPostProcessor"/>
