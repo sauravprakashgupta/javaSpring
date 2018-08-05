@@ -24,10 +24,14 @@
 <fullyQualifiedTypeName name="org.springframework.context.event.ContextRefreshedEvent"/>
 <fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
 <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
-<fullyQualifiedTypeName name="com.sauravcodeblog.Model.Circle"/>
 <fullyQualifiedTypeName name="com.sauravcodeblog.Model.Triangle"/>
 <fullyQualifiedTypeName name="com.sauravcodeblog.ShapeService.ShapeService"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Aspect"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
 <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Pointcut"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.JoinPoint"/>
+<fullyQualifiedTypeName name="com.sauravcodeblog.Model.Circle"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.After"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.AfterReturning"/>
+<fullyQualifiedTypeName name="org.aspectj.lang.annotation.AfterThrowing"/>
 </qualifiedTypeNameHistroy>

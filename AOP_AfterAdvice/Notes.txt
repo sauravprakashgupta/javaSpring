@@ -1,0 +1,20 @@
+@After Advice
+Similar to @Before annotation we have After annotation which executes after the target method.
+Note: all features of before are also present in after annotation, i.e, pointCuts, args(), args(name), etc.
+
+Similar to Before annotation, after is never called by Spring Container calls (such setter initialization call), but will be called when explicitly called(see notes on AOP_joinPoints Notes).
+
+Note: for after annotaion, the advice is run no matter the target method is successfully executed or not. So we can use @AfterReturning : to ensure the advice is executed only iff the target executes successfully and returns.
+To test this we can explicitly throw an exception using the 'throw' keyword. and remove the Bean property for setter class so that bean is not initalized.
+
+Now suppose you want an advice method to be called when an exception occurs, you can use the @AfterThrowing(). So if we use @AfterThrowing() and @AfterReturning, then in case of any exception @AfterThrowing will be executed and @AfterReturning is not executed.
+Note: @After() is sometimes also called afterFinally as it executes no matter an exception is thrown or not.
+
+If we want our AfterReturning to return something we have to use the keyword 'returning'. while doing this we have to make 'args()' to 'pointcut=srgs()'. the only reason we are doing this is to input 2 arguments args() and returning in AfterReturning() signature.
+Note: 
+args() and pointCut=args() means the same thing.
+or
+execution(* get*(..)) and pointCut=execution(* get*(..)) means the same thing.
+
+
+Similar to 'returning' keyword for returning out in @AfterReturning we can use 'throwing' keyhword to define the exception that will be thrown.

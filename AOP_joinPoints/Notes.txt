@@ -1,0 +1,45 @@
+@Before("allCircleMethods")
+this will cause all methods in Circle class (getter/setter/etc) to be executed
+
+Where 
+@Pointcut("within(com.sauravcodeblog.Model.Circle)")
+public void allCircleMethods() {}
+
+Now we want the method loggingAdvice() to be executed depending on which method call initiate it.
+Say, we want loggingAdvice() to execute only when getMethod() is called.
+
+We can achieve this by using JoinPoint
+JointPoint: It means all the places in your code where you want to(/can) apply advice. As Advice are applied to methods. So methods in AOP are actually the joinPoints.
+
+There are many task which you cant perform using spring AOP, but if you use aspectJ AOP you can easily perform that. for example : suppose you have a instance variable 'name', so you want to execute an advice each time the value of name changes(No matter setter method is called or not)
+
+So JoinPoint can also carry the information about the method for which the advice will be executed. For example, if getter() method is calling the advice loggingAdvice() method. then JoinPoint will have information about the getter() method as well.
+System.out.println(joinPoint.toString());
+
+One very useful method we have for JoinPoint is getTarget(), it gives us the object whose method actually calls the advice. 
+Say we have loggingAdvice() which will be called when getter() method of Circle class is executed. So getTarget() method will give the information about the circle object.
+System.out.println(joinPoint.getTarget());
+Circle circleObj = (Circle)joinPoint.getTarget();
+So here we have the access to object class, which can be very handy if required.
+
+
+Advice Arguments
+Suppose we have a pointCut which get executed when any method which takes a String argument is executed. We can use the args. We can also get the passed argument itslef if we use the argument name in args().
+
+
+
+@Before("args(String)")
+public void stringArgumentMethods() {
+	System.out.println("A method that takes String argument is called");
+}
+
+@Before("args(name)")
+//by using name, we not giving it variable type, we are saying what will be the name of the variable, the variable type will be declared in the method below
+public void stringArgumentMethods(String name) {
+	//here by using String name in stringArgumentMethods() we have mentioned that a variable of type String. 
+	System.out.println("A method that takes String argument is called " +name);
+}
+
+If you execute this you will see any statement(say System.out.println()) will be called twice the reson for this is, first time the setter() is called by the string Container itself for initialization purpose. the second it is executed when we make the call.
+But you will see that the advice is called only once, so advice is called only for explicit calls made by the programmer. And no calls made by the Spring container actually intiates the advice.
+
