@@ -12,6 +12,7 @@ public class Triangle {
 				"("+pointC.getX() +','+pointC.getY()+")"
 				);
 	}
+	
 //	Triangle(Point _pointA,Point _pointB,Point _pointC){
 //		this.pointA = _pointA;
 //		this.pointB = _pointB;

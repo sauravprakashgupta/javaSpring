@@ -18,19 +18,20 @@ public class Triangle implements ApplicationContextAware, BeanNameAware{
 				"("+pointC.getX() +','+pointC.getY()+")"
 				);
 	}
+	
 	Triangle(Point _pointA,Point _pointB,Point _pointC){
 		this.pointA = _pointA;
 		this.pointB = _pointB;
 		this.pointC = _pointC;
 	}
+	
 	@Override
 	public void setApplicationContext(ApplicationContext _context) throws BeansException {
-		// TODO Auto-generated method stub
 		this.context = _context;
 	}
+	
 	@Override
 	public void setBeanName(String beanName) {
-		// TODO Auto-generated method stub
 		System.out.println("Bean name is "+beanName);
 	}
 }

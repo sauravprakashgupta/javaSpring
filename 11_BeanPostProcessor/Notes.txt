@@ -4,7 +4,7 @@ BeanPostProcessors are classes that tells spring that there is some processing t
 
 a. A single method executed each time for each bean initialization. No matter how many and how many types of beans exists in Beans.xml file
 
-b. BeanPostProcessors is a seperate class, it catters to initialization of beans. and methods this class does all our task.
+b. BeanPostProcessors is a seperate class, it catters to initialization of beans and methods this class does all our task.
 
 c. In our previous example we saw init and destroy methods which act as a constructor and destructors for overall beans.xml file. But in case if you want inital methods specifically for before and after bean creation with id="triangle" we can have it. if we want it for id="pointA", we can have it, and so on for each bean. So BeanPostProcessors can be treated a way to execute a method that need to be run across all these different beans before and after its completion.
 

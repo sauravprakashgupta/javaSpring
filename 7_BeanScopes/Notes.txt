@@ -1,5 +1,5 @@
 Bean Scope
-We have some objects which are managed by spring container and we have come objects which are not managed by the spring container.
+We have some objects which are managed by spring container and we have some objects which are not managed by the spring container.
 see screenshot.
 When we say, managed by the Spring container, what it mean is any object can reference any object from the spring container by providing their 'ID' and then spring provides an instance of that object that we request. This all happens based on the Factory pattern(Application Context or Bean Factory).
 So when an object makes a request in Bean Factory/ Application context for an instance of the bean, the BF/AC refers to the "beans.xml" files and then it gets the information based on the ID, it creates the blueprint of the bean and then hands it over to the calling object.
